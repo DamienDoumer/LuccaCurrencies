@@ -70,6 +70,15 @@ namespace Lucca.Currencies {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conversion was not possible, please make sure the currency input is of a correct format..
+        /// </summary>
+        internal static string ConversionNotPossilbeErrorMessage {
+            get {
+                return ResourceManager.GetString("ConversionNotPossilbeErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insufficient instruction in file..
         /// </summary>
         internal static string InsufficientInstructionsErrorCode {

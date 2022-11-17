@@ -7,23 +7,19 @@ using Lucca.Currencies.Services.Abstractions;
 /// <summary>
 /// Reads and extracts instructions from the given file.
 /// </summary>
-internal class InstructionsExtractionService : IInstructionsExtractionService
+internal class InstructionsExtraction : IInstructionsExtraction
 {
-    private readonly string _filePath;
     private const char InstructionDelimiter = ';';
 
-    public InstructionsExtractionService(string filePath)
+    public InstructionsExtraction()
     {
-        _filePath = filePath;
-        if (!File.Exists(filePath))
-            throw new FileNotFoundException();
     }
 
-    private Queue<string> ReadFileContent()
+    private Queue<string> ReadFileContent(string filePath)
     {
         var lines = new Queue<string>();
         var line = string.Empty;
-        using var reader = new StreamReader(_filePath);
+        using var reader = new StreamReader(filePath);
 
         while ((line = reader.ReadLine()) != null)
         {
@@ -66,9 +62,12 @@ internal class InstructionsExtractionService : IInstructionsExtractionService
         return true;
     }
 
-    public Instruction ExtractInstructions()
+    public Instruction ExtractInstructions(string filePath)
     {
-        var instructionLines = ReadFileContent();
+        if (!File.Exists(filePath))
+            throw new FileNotFoundException();
+
+        var instructionLines = ReadFileContent(filePath);
         return ExtractInstructions(instructionLines);
     }
 

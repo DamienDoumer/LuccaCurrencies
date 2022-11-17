@@ -4,7 +4,7 @@ namespace Lucca.Currencies.Algorithms;
 
 internal static class Algorithm
 {
-    public static HashSet<string> ShortestPathSearch(Graph graph, string startCurrency, string endCurrency)
+    public static IEnumerable<string> ShortestPathSearch(Graph graph, string startCurrency, string endCurrency)
     {
         var visited = new HashSet<string>();
         var previous = new HashSet<string>();

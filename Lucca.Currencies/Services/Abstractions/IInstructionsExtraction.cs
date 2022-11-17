@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Lucca.Currencies.Services.Abstractions
 {
-    internal interface IInstructionsExtractionService
+    internal interface IInstructionsExtraction
     {
         Instruction ExtractInstructions(Queue<string> instructionLines);
-        Instruction ExtractInstructions();
+        Instruction ExtractInstructions(string filePath);
     }
 }

@@ -1,15 +1,22 @@
 ﻿using Lucca.Currencies;
 using Lucca.Currencies.Algorithms;
 using Lucca.Currencies.Helpers;
+using Lucca.Currencies.Services;
 using Lucca.Currencies.Services.Abstractions;
 
 var filePath = args[0];
-IInstructionsExtractionService _extractionService;
+IInstructionsExtraction _extraction;
+ICurrencyConverter _currencyConverter;
 
 try
 {
-    _extractionService = new InstructionsExtractionService(filePath);
-    var instructions = _extractionService.ExtractInstructions();
+    _extraction = new InstructionsExtraction();
+    _currencyConverter = new CurrencyConverter();
+
+    var instructions = _extraction.ExtractInstructions(filePath);
+    var conversionResult = _currencyConverter.Convert(instructions);
+
+    Console.WriteLine(conversionResult);
 }
 catch (CurrencyException e) when (e.Code == ErrorCodes.CurrencyNotHandled)
 {
