@@ -20,7 +20,11 @@ try
 }
 catch (CurrencyException e) when (e.Code == ErrorCodes.CurrencyNotHandled)
 {
-
+    Console.WriteLine(Texts.CurrencyNotHandledErrorMessage);
+}
+catch (CurrencyException e) when (e.Code == ErrorCodes.ConversionNotPossilbe)
+{
+    Console.WriteLine(Texts.ConversionNotPossilbeErrorMessage);
 }
 catch (CurrencyException e) when (e.Code == ErrorCodes.BadInstructionsFound)
 {

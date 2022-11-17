@@ -22,7 +22,7 @@ namespace Lucca.Currencies.Services
             var conversionPath = Algorithm.ShortestPathSearch(graph, instruction.StartCurrency, instruction.EndCurrency)
                 .ToList();
             if (conversionPath.LastOrDefault() != instruction.EndCurrency)
-                throw new CurrencyException(ErrorCodes.ConversionNotPossilbe, Texts.ConversionNotPossilbeErrorMessage);
+                throw new CurrencyException(ErrorCodes.ConversionNotPossilbe, "Conversion was not possible");
 
             for (int index = 0;index < conversionPath.Count - 1;index++)
             {

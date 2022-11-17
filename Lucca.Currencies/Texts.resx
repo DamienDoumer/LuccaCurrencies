@@ -123,6 +123,9 @@
   <data name="ConversionNotPossilbeErrorMessage" xml:space="preserve">
     <value>Conversion was not possible, please make sure the currency input is of a correct format.</value>
   </data>
+  <data name="CurrencyNotHandledErrorMessage" xml:space="preserve">
+    <value>The currency input was not handled.</value>
+  </data>
   <data name="InsufficientInstructionsErrorCode" xml:space="preserve">
     <value>Insufficient instruction in file.</value>
   </data>

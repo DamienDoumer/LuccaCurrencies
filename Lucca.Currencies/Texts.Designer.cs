@@ -79,6 +79,15 @@ namespace Lucca.Currencies {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The currency input was not handled..
+        /// </summary>
+        internal static string CurrencyNotHandledErrorMessage {
+            get {
+                return ResourceManager.GetString("CurrencyNotHandledErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insufficient instruction in file..
         /// </summary>
         internal static string InsufficientInstructionsErrorCode {
