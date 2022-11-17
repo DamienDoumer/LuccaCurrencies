@@ -1,4 +1,35 @@
-﻿using Lucca.Currencies.Algorithms;
+﻿using Lucca.Currencies;
+using Lucca.Currencies.Algorithms;
+using Lucca.Currencies.Helpers;
+using Lucca.Currencies.Services.Abstractions;
+
+var filePath = args[0];
+IInstructionsExtractionService _extractionService;
+
+try
+{
+    _extractionService = new InstructionsExtractionService(filePath);
+    var instructions = _extractionService.ExtractInstructions();
+}
+catch (CurrencyException e) when (e.Code == ErrorCodes.CurrencyNotHandled)
+{
+
+}
+catch (CurrencyException e) when (e.Code == ErrorCodes.BadInstructionsFound)
+{
+    Console.WriteLine(e.Message);
+}
+catch (CurrencyException e) when (e.Code == ErrorCodes.InsufficientInstructionsFound)
+{
+    Console.WriteLine(Texts.InsufficientInstructionsErrorCode);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+    throw;
+}
+
+
 
 var vertices = new[] { "AUD", "CHF", "JPY", "KWU", "EUR", "USD", "INR", "Shit" };
 var edges = new[]
