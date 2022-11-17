@@ -7,7 +7,7 @@ using Lucca.Currencies.Services.Abstractions;
 /// <summary>
 /// Reads and extracts instructions from the given file.
 /// </summary>
-internal class InstructionsExtraction : IInstructionsExtraction
+public class InstructionsExtraction : IInstructionsExtraction
 {
     private const char InstructionDelimiter = ';';
 
@@ -71,7 +71,7 @@ internal class InstructionsExtraction : IInstructionsExtraction
         return ExtractInstructions(instructionLines);
     }
 
-    public Instruction ExtractInstructions(Queue<string> instructionLines)
+    private Instruction ExtractInstructions(Queue<string> instructionLines)
     {
         var instruction = new Instruction();
         int currentInstructionLine = 3;
@@ -84,7 +84,7 @@ internal class InstructionsExtraction : IInstructionsExtraction
                 string.Format(Texts.BadInstructions, 1));
 
         instruction.StartCurrency = conversionInstructionParts[0].ToUpper();
-        instruction.EndCurrency = conversionInstructionParts[0].ToUpper();
+        instruction.EndCurrency = conversionInstructionParts[2].ToUpper();
 
         bool isNumber = int.TryParse(conversionInstructionParts[1], out int conversionValue);
         bool isLine2ANumber = int.TryParse(currencyNodeCount, out int iterations);

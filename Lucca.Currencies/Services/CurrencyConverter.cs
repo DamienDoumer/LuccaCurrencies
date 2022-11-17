@@ -9,7 +9,10 @@ using Lucca.Currencies.Helpers;
 
 namespace Lucca.Currencies.Services
 {
-    internal class CurrencyConverter : ICurrencyConverter
+    /// <summary>
+    /// The class in charge of performing currency conversion
+    /// </summary>
+    public class CurrencyConverter : ICurrencyConverter
     {
         public decimal Convert(Instruction instruction)
         {

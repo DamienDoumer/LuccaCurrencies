@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lucca.Currencies.Helpers
 {
-    internal class Instruction
+    public class Instruction
     {
         public string StartCurrency { get; set; }
         public string EndCurrency { get; set; }

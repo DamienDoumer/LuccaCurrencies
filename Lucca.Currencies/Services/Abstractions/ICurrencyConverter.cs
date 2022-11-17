@@ -7,7 +7,7 @@ using Lucca.Currencies.Helpers;
 
 namespace Lucca.Currencies.Services.Abstractions
 {
-    internal interface ICurrencyConverter
+    public interface ICurrencyConverter
     {
         decimal Convert(Instruction instruction);
     }
