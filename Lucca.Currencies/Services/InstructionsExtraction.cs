@@ -10,11 +10,7 @@ using Lucca.Currencies.Services.Abstractions;
 public class InstructionsExtraction : IInstructionsExtraction
 {
     private const char InstructionDelimiter = ';';
-
-    public InstructionsExtraction()
-    {
-    }
-
+    
     private Queue<string> ReadFileContent(string filePath)
     {
         var lines = new Queue<string>();

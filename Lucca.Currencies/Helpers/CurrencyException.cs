@@ -1,6 +1,6 @@
 ﻿namespace Lucca.Currencies.Helpers;
 
-internal class CurrencyException : Exception
+public class CurrencyException : Exception
 {
     public int Code { get; set; }
 

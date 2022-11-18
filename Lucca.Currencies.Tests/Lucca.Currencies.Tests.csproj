@@ -9,10 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="BadInstructionsFile.txt" />
     <None Remove="SimpleInstructionsFile.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="BadInstructionsFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SimpleInstructionsFile.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
