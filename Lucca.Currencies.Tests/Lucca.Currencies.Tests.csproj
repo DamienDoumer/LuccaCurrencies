@@ -10,11 +10,19 @@
 
   <ItemGroup>
     <None Remove="BadInstructionsFile.txt" />
+    <None Remove="BadInstructionsFile2.txt" />
+    <None Remove="LongerInstructionsFile.txt" />
     <None Remove="SimpleInstructionsFile.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="BadInstructionsFile2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="BadInstructionsFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LongerInstructionsFile.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SimpleInstructionsFile.txt">

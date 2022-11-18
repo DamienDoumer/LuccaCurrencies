@@ -1,6 +1,7 @@
 ﻿using Lucca.Currencies.Services.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,14 +23,18 @@ namespace Lucca.Currencies.Services
 
             decimal conversionResult = instruction.Value;
             var graph = new Graph(instruction.Vertices, instruction.Nodes);
-            var conversionPath = Algorithm.ShortestPathSearch(graph, instruction.StartCurrency, instruction.EndCurrency)
+            var conversionPath = Algorithm.ShortestPathSearch(graph, instruction.StartCurrency, instruction.EndCurrency, instruction.ExchangeRates)
                 .ToList();
             if (conversionPath.LastOrDefault() != instruction.EndCurrency)
                 throw new CurrencyException(ErrorCodes.ConversionNotPossilbe, "Conversion was not possible");
 
             for (int index = 0;index < conversionPath.Count - 1;index++)
             {
-                conversionResult = GetRateFast(instruction, conversionPath[index], conversionPath[index + 1])  * conversionResult;
+                var exchangeRate = GetRateFast(instruction, conversionPath[index], conversionPath[index + 1]);
+
+                Debug.WriteLine($"Conversion:{exchangeRate} * {conversionResult}");
+                conversionResult = Math.Round(exchangeRate  * conversionResult, 4);
+                Debug.WriteLine($"Result = {conversionResult}");
             }
 
             return Math.Round(conversionResult, 0);
@@ -43,6 +48,7 @@ namespace Lucca.Currencies.Services
         decimal GetRateFast(Instruction instruction, string startCurrency, string endCurrency)
         {
             var key = $"{startCurrency}_{endCurrency}";
+            Debug.WriteLine($"Exchange rate retrieved:{key}");
 
             if (instruction.ExchangeRates.ContainsKey(key))
                 return instruction.ExchangeRates[key];

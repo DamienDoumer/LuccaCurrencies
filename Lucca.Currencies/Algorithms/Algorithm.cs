@@ -4,10 +4,11 @@ namespace Lucca.Currencies.Algorithms;
 
 internal static class Algorithm
 {
-    public static IEnumerable<string> ShortestPathSearch(Graph graph, string startCurrency, string endCurrency)
+    public static IEnumerable<string> ShortestPathSearch(Graph graph, string startCurrency, string endCurrency, Dictionary<string, decimal> exchangeRates)
     {
         var visited = new HashSet<string>();
-        var previous = new HashSet<string>();
+        var conversionPath = new HashSet<string>();
+        var previousCurrency = startCurrency;
 
         if (!graph.AdjacencyList.ContainsKey(startCurrency) || !graph.AdjacencyList.ContainsKey(endCurrency))
             throw new CurrencyException(ErrorCodes.CurrencyNotHandled,
@@ -29,19 +30,20 @@ internal static class Algorithm
             {
                 if (endCurrency?.Equals(vertex) ?? false)
                 {
-                    previous.Add(vertex);
+                    conversionPath.Add(vertex);
                     break;
                 }
 
                 if (!visited.Contains(neighbor))
                 {
                     queue.Enqueue(neighbor);
-                    previous.Add(vertex);
+                    if (previousCurrency == vertex || exchangeRates.ContainsKey($"{previousCurrency}_{vertex}"))
+                        conversionPath.Add(vertex);
+                    previousCurrency = vertex;
                 }
             }
-
         }
 
-        return previous;
+        return conversionPath;
     }
 }

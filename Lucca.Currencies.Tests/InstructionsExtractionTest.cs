@@ -1,8 +1,4 @@
-using Lucca.Currencies.Helpers;
-using Lucca.Currencies.Services.Abstractions;
-
 namespace Lucca.Currencies.Tests;
-
 
 public class InstructionsExtractionTest
 {
@@ -56,6 +52,15 @@ public class InstructionsExtractionTest
     public void TestBadInstructionExtractions()
     {
         string filePath = "BadInstructionsFile.txt";
+        IInstructionsExtraction _extraction = new InstructionsExtraction();
+
+        Assert.Throws<CurrencyException>(() => _extraction.ExtractInstructions(filePath));
+    }
+
+    [Fact]
+    public void TestBadConversionValueInstructionExtractions()
+    {
+        string filePath = "BadInstructionsFile2.txt";
         IInstructionsExtraction _extraction = new InstructionsExtraction();
 
         Assert.Throws<CurrencyException>(() => _extraction.ExtractInstructions(filePath));

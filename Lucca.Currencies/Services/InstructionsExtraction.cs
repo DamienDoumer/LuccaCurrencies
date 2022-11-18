@@ -84,15 +84,16 @@ public class InstructionsExtraction : IInstructionsExtraction
 
         bool isNumber = int.TryParse(conversionInstructionParts[1], out int conversionValue);
         bool isLine2ANumber = int.TryParse(currencyNodeCount, out int iterations);
-        if (!isNumber)
+        if (!isNumber || conversionValue < 0)
             throw new CurrencyException(ErrorCodes.BadInstructionsFound,
                 string.Format(Texts.BadInstructions, 1));
-        if (!isLine2ANumber)
+        if (!isLine2ANumber || iterations < 0)
             throw new CurrencyException(ErrorCodes.BadInstructionsFound,
                 string.Format(Texts.BadInstructions, 2));
 
         instruction.Value = conversionValue;
         instruction.Iterations = iterations;
+        iterations = instructionLines.Count < iterations ? instructionLines.Count : iterations;
 
         for (int i = 0; i < iterations; i++)
         {
