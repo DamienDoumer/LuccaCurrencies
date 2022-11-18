@@ -6,6 +6,6 @@ public class CurrencyException : Exception
 
     public CurrencyException(int code, string message) : base(message)
     {
-        
+        Code = code;
     }
 }

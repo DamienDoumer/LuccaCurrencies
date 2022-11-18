@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Lucca.Currencies": {
+      "commandName": "Project",
+      //TODO: Replace this with the conversion file you want to use.
+      "commandLineArgs": "D:\\ExternalProjects\\Lucca\\Lucca.Currencies\\Lucca.Currencies.Tests\\SimpleInstructionsFile.txt"
+    }
+  }
+}
