@@ -31,10 +31,8 @@ namespace Lucca.Currencies.Services
             for (int index = 0;index < conversionPath.Count - 1;index++)
             {
                 var exchangeRate = GetRateFast(instruction, conversionPath[index], conversionPath[index + 1]);
-
-                //Debug.WriteLine($"Conversion:{exchangeRate} * {conversionResult}");
+                
                 conversionResult = Math.Round(exchangeRate  * conversionResult, 4);
-                //Debug.WriteLine($"Result = {conversionResult}");
             }
 
             return Math.Round(conversionResult, 0);
@@ -48,7 +46,6 @@ namespace Lucca.Currencies.Services
         decimal GetRateFast(Instruction instruction, string startCurrency, string endCurrency)
         {
             var key = $"{startCurrency}_{endCurrency}";
-            //Debug.WriteLine($"Exchange rate retrieved:{key}");
 
             if (instruction.ExchangeRates.ContainsKey(key))
                 return instruction.ExchangeRates[key];
